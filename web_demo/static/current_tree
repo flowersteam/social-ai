@@ -1,0 +1,152 @@
+digraph unix {
+	size="30,100"
+	node [color=lightblue3 fontcolor=black fontsize=18 shape=box style=filled]
+	node_1 [label=Env_type type=parameter]
+	node [color=grey95 fontcolor=gray70 fontsize=18 shape=ellipse style=filled]
+	node_2 [label=Information_seeking type=value]
+	node [color=white fontcolor=gray70 fontsize=30 shape=none]
+	node_2_fold [label="..." type=value]
+	node_2 -> node_2_fold [color=gray70]
+	node_1 -> node_2
+	node [color=lightblue2 fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_50 [label=Collaboration type=value]
+	node_1 -> node_50
+	node [color=grey95 fontcolor=gray70 fontsize=18 shape=ellipse style=filled]
+	node_95 [label=AppleStealing type=value]
+	node [color=white fontcolor=gray70 fontsize=30 shape=none]
+	node_95_fold [label="..." type=value]
+	node_95 -> node_95_fold [color=gray70]
+	node_1 -> node_95
+	node [color=lightblue3 fontcolor=black fontsize=18 shape=box style=filled]
+	node_51 [label=Problem type=parameter]
+	node_50 -> node_51
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_52 [label=Boxes type=value]
+	node_51 -> node_52
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_58 [label=Switches type=value]
+	node_51 -> node_58
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_64 [label=Generators type=value]
+	node_51 -> node_64
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_70 [label=Marble type=value]
+	node_51 -> node_70
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_76 [label=MarblePass type=value]
+	node_51 -> node_76
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_83 [label=MarblePush type=value]
+	node_51 -> node_83
+	node [color=lightblue2 fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_89 [label=LeverDoor type=value]
+	node_51 -> node_89
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_53 [label=Role type=parameter]
+	node_52 -> node_53
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_56 [label=Version type=parameter]
+	node_52 -> node_56
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_59 [label=Role type=parameter]
+	node_58 -> node_59
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_62 [label=Version type=parameter]
+	node_58 -> node_62
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_65 [label=Role type=parameter]
+	node_64 -> node_65
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_68 [label=Version type=parameter]
+	node_64 -> node_68
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_71 [label=Role type=parameter]
+	node_70 -> node_71
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_74 [label=Version type=parameter]
+	node_70 -> node_74
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_77 [label=Role type=parameter]
+	node_76 -> node_77
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_80 [label=Version type=parameter]
+	node_76 -> node_80
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_84 [label=Role type=parameter]
+	node_83 -> node_84
+	node [color=grey60 fontcolor=black fontsize=18 shape=box style=filled]
+	node_87 [label=Version type=parameter]
+	node_83 -> node_87
+	node [color=lightblue3 fontcolor=black fontsize=18 shape=box style=filled]
+	node_90 [label=Role type=parameter]
+	node_89 -> node_90
+	node [color=lightblue3 fontcolor=black fontsize=18 shape=box style=filled]
+	node_93 [label=Version type=parameter]
+	node_89 -> node_93
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_54 [label=A type=value]
+	node_53 -> node_54
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_55 [label=B type=value]
+	node_53 -> node_55
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_57 [label=Social type=value]
+	node_56 -> node_57
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_60 [label=A type=value]
+	node_59 -> node_60
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_61 [label=B type=value]
+	node_59 -> node_61
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_63 [label=Social type=value]
+	node_62 -> node_63
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_66 [label=A type=value]
+	node_65 -> node_66
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_67 [label=B type=value]
+	node_65 -> node_67
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_69 [label=Social type=value]
+	node_68 -> node_69
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_72 [label=A type=value]
+	node_71 -> node_72
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_73 [label=B type=value]
+	node_71 -> node_73
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_75 [label=Social type=value]
+	node_74 -> node_75
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_78 [label=A type=value]
+	node_77 -> node_78
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_79 [label=B type=value]
+	node_77 -> node_79
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_81 [label=Social type=value]
+	node_80 -> node_81
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_82 [label=Asocial type=value]
+	node_80 -> node_82
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_85 [label=A type=value]
+	node_84 -> node_85
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_86 [label=B type=value]
+	node_84 -> node_86
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_88 [label=Social type=value]
+	node_87 -> node_88
+	node [color=lightgray fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_91 [label=A type=value]
+	node_90 -> node_91
+	node [color=lightblue2 fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_92 [label=B type=value]
+	node_90 -> node_92
+	node [color=lightblue2 fontcolor=black fontsize=18 shape=ellipse style=filled]
+	node_94 [label=Social type=value]
+	node_93 -> node_94
+}

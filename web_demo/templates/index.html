@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SocialAI School Demo</title>
+    <style>
+        form {
+            display: inline-block;
+            display: inline-block;
+            margin-left: 2px;
+            margin-right: 2px;
+            margin-bottom: 2px;
+            margin-top: 2px;
+        }
+
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* aligns children to the start */
+        }
+
+        .form-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* provides spacing between controls */
+        }
+
+        .form-label {
+            width: 200px; /* adjust this value as needed */
+            text-align: right;
+            margin-right: 10px;
+        }
+
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align to the top/start */
+            height: 100vh;
+            margin: 0; /* Remove default margin */
+            padding: 10px; /* Optional: Add some padding at the top for spacing */
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .action-row {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 10px; /* Adds a space between the two rows */
+        }
+
+        .svg-container {
+            width: 60%;  /* Adjust to desired width */
+            height: 30%;  /* Adjust to desired width */
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            padding-top: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            overflow-x: auto; /* Show scrollbars when necessary */
+            overflow-y: auto; /* Show scrollbars when necessary */
+            border: 5px solid #ccc; /* Optional: just to visualize the container's boundaries */
+            border-radius: 10px; /* uniform roundness */
+            box-shadow: 3px 3px 5px #888888; /* horizontal offset | vertical offset | blur radius | color */
+        }
+
+        .env-container {
+            width: 60%;  /* Adjust to desired width */
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            padding-top: 2px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ccc; /* Optional: just to visualize the container's boundaries */
+            border-radius: 10px; /* uniform roundness */
+            box-shadow: 3px 3px 5px #888888; /* horizontal offset | vertical offset | blur radius | color */
+        }
+
+        .env-flex {
+            display: flex;
+            align-items: flex-start;  /* to align items to the top */
+        }
+
+        img {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        #envImage {
+            max-width: 90%;  /* or whatever size you prefer */
+        }
+
+        .bubble {
+            margin-left: 20px;  /* space between the image and the bubble */
+            position: relative;
+            background-color: #f7f8f9;
+            border-radius: 10px;
+            padding: 10px;
+            width: max-content;
+            max-width: 200px;  /* adjust if necessary */
+            margin-bottom: 20px;
+        }
+
+        /* The switch container */
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        /* The slider (the on/off part) */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: 0.4s;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          transition: 0.4s;
+        }
+
+        /* When input is checked, slide to the right */
+        input:checked + .slider {
+          background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+          transform: translateX(26px);
+        }
+
+        /* Round sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
+        }
+
+    </style>
+    <script>
+        function performAction(actionName) {
+            let bodyData = `action=${actionName}`;
+
+            // If the action is "speak", fetch the selected template and word
+            if (actionName === "speak") {
+                const template = document.getElementById('actionTemplate').value;
+                const word = document.getElementById('actionWord').value;
+                bodyData += `&template=${template}&word=${word}`;
+            }
+
+            fetch('/update_image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: bodyData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('envImage').src = `data:image/jpeg;base64,${data.image_data}`;
+                if (actionName === "done") {
+                    const svgTree = document.getElementById('svgTree');
+                    svgTree.data = `./static/current_tree.svg?_=${data.timestamp}`;
+                }
+
+                // Add this to handle the caretaker's utterance
+                let bubble = document.getElementById('caretakerBubble');
+                if(data.bubble_text) {
+                    bubble.innerText = data.bubble_text;
+                    bubble.style.display = 'block';
+                } else {
+                    bubble.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.addEventListener("keydown", function(event) {
+                if (event.key === "ArrowLeft") {
+                    performAction('left');
+                } else if (event.key === "ArrowUp") {
+                    performAction('forward');
+                } else if (event.key === "ArrowRight") {
+                    performAction('right');
+                } else if (event.key === "s") {
+                    performAction('speak');
+                } else if (event.key === "Spacebar" || event.key === " ") {
+                    performAction('toggle');
+                } else if (event.key === "Shift") { // You had two conditions for Shift, so I've merged them.
+                    performAction('noop');
+                } else if (event.key === "Enter") {
+                    performAction('done');
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div class="controls-container">
+        <div class="form-container">
+            <span class="form-label">Select Environment:</span>
+            <form method="post" action="/set_env" id="envForm">
+                <select name="env_label" onchange="document.getElementById('envForm').submit();">
+                {% for env in available_env_labels %}
+                    <option value="{{ env }}" {% if env == current_env_label %}selected{% endif %}>{{ env }}</option>
+                {% endfor %}
+                </select>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <span class="form-label">Mask unobserved cells:</span>
+            <form action="/set_mask_unobserved" method="post">
+                <label class="switch">
+                    <input type="checkbox" name="mask_unobserved" value="true" onchange="this.form.submit()" {{ 'checked' if mask_unobserved }}>
+                    <span class="slider round"></span>
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <p>This is the sampling tree. The current sampled parameters are highlighted blue</p>
+    <div class="svg-container">
+        <object id="svgTree" type="image/svg+xml" data="{{ url_for('static', filename='current_tree.svg', _=timestamp) }}" width="95%" height="95%">Your browser does not support SVG</object>
+    </div>
+
+    <p>This is the environment.</p>
+    <div class="env-container">
+        <p>You can control the agent using the following actions:</p>
+
+        <div class="btn-container">
+            <div class="action-row">Primitive actions:
+            <button onclick="performAction('left')">Left [&larr;]</button>
+            <button onclick="performAction('forward')">Forward [&uarr;]</button>
+            <button onclick="performAction('right')">Right [&rarr;]</button>
+            <button onclick="performAction('toggle')">Toggle [Spacebar]</button>
+            <button onclick="performAction('noop')">No-op [Shift]</button>
+            <button onclick="performAction('done')">Done [Enter]</button>
+            </div>
+
+            <div class="action-row">
+                Speaking actions:
+                <select id="actionTemplate">
+                    {% for templ in grammar_templates %}
+                    <option value="{{ templ }}" {{ 'selected' if templ == "Help" else '' }}>{{ templ }}</option>
+                    {% endfor %}
+                </select>
+                <select id="actionWord">
+                    {% for word in grammar_words %}
+                    <option value="{{ word }}" {{ 'selected' if word == "please" else '' }}>{{ word }}</option>
+                    {% endfor %}
+                </select>
+                <button onclick="performAction('speak')">Speak [s]</button>
+            </div>
+
+        </div>
+
+        <div class="env-flex">
+            <img id="envImage" src="data:image/jpeg;base64,{{ image_data }}" alt="State of the environment">
+
+            <div id="caretakerBubble" class="bubble">
+                {{ bubble_text }}
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+flask==2.2.5
+pillow==9.5.0
+astar==0.93
+termcolor==2.3.0
+matplotlib==3.5.3
+graphviz==0.20.1

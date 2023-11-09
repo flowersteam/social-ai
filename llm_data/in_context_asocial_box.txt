@@ -1,0 +1,89 @@
+New episode.
+Obs : 3 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!
+New episode.
+Obs : 2 steps to the right there is a closed green lockablebox
+Act : turn right
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!
+New episode.
+Obs :  2 steps to the left there is a closed green lockablebox
+Act : turn left
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!
+New episode.
+Obs : 2 steps in front of you and 2 steps to the right there is a closed blue lockablebox
+Act : move forward
+Obs : 1 steps in front of you and 2 steps to the right there is a closed blue lockablebox
+Act : move forward
+Obs :  2 steps to the right there is a closed blue lockablebox
+Act : turn right
+Obs : 2 steps in front of you  there is a closed blue lockablebox
+Act : move forward
+Obs : Right in front of you  there is a closed blue lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!
+New episode.
+Obs : 2 steps in front of you and 1 steps to the left there is a closed green lockablebox
+Act : move forward
+Obs : 1 steps in front of you and 1 steps to the left there is a closed green lockablebox
+Act : move forward
+Obs : Just to the left of you there is a closed green lockablebox
+Act : turn left
+Obs : Right in front of you  there is a closed green lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!
+New episode.
+Obs :
+Act : turn right
+Obs : 1 steps in front of you and 1 steps to the right there is a closed blue lockablebox
+Act : move forward
+Obs : Just to the right of you there is a closed blue lockablebox
+Act : turn right
+Obs : Right in front of you  there is a closed blue lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!
+New episode.
+turn right
+Obs :
+Act : turn right
+Obs :
+Act : turn right
+Obs :
+Act : move forward
+Obs :
+Act : turn right
+Obs : 4 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : 3 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Act : toggle
+Success!

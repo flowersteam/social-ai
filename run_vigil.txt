@@ -1,0 +1,52 @@
+## squeue -u utu57ed -i 1 -o "%.18i %.9P %.130j %.8u %.2t %.10M %.6D %R"
+#
+#
+## Basic
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+#
+#
+## DEAF
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_deaf_no_explo_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_deaf_no_explo_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2
+#
+#
+#
+### No exploration bonus
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_no_explo_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_no_explo_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2
+#
+#
+#
+### BOW
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_bow_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch bow_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_bow_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch bow_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+#
+#
+#
+### No memory
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_no_mem_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-3 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_no_mem_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-3 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+#
+#
+##
+### Bigru
+--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_bigru_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50 --bAI-lang-model bigru
+--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_bigru_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50 --bAI-lang-model bigru
+### Attgru
+--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_attgru_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50 --bAI-lang-model attgru
+--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_attgru_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOut-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50 --bAI-lang-model attgru
+#
+#
+#
+### Nameless
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_nameless_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiarNameless-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_nameless_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNameless-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+#
+### Nameless no memory
+--slurm_conf jz_medium_2gpus --nb_seeds 16 --model RERUN_WizardGuide_lang64_nameless_no_mem_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiarNameless-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-3 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+--slurm_conf jz_medium_2gpus --nb_seeds 16 --model RERUN_WizardTwoGuides_lang64_nameless_no_mem_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNameless-8x8-v0 --dialogue --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-3 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50
+#
+#
+### Current dialogue Only
+--slurm_conf jz_medium_2gpus_32g --nb_seeds 16 --model RERUN_WizardGuide_lang64_curr_dial_only_mm_baby_short_rec --algo ppo --*env MiniGrid-TalkItOutNoLiar-8x8-v0 --current-dialogue-only --save-interval 10 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-params 5 50

@@ -1,0 +1,80 @@
+## squeue -u utu57ed -i 1 -o "%.18i %.9P %.130j %.8u %.2t %.10M %.6D %R"
+##
+### RND
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_rnd_mask  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N2-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference --exploration-bonus --exploration-bonus-type rnd
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_rnd_mask  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N4-S5-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference --exploration-bonus --exploration-bonus-type rnd
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_rnd_mask  --compact-save --algo ppo --*env MiniGrid-MultiRoomNoisyTV-N7-S4-v0 --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference --exploration-bonus --exploration-bonus-type rnd
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_rnd_mask  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference --exploration-bonus --exploration-bonus-type rnd
+### Basic
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_raw  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N2-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_raw  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N4-S5-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_raw  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_raw  --compact-save --algo ppo --*env MiniGrid-MultiRoomNoisyTV-N7-S4-v0 --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_raw  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-rnd-reference
+### RIDE
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_ride  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N2-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-ride-reference --exploration-bonus --exploration-bonus-type ride
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_ride  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N4-S5-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-ride-reference --exploration-bonus --exploration-bonus-type ride
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_ride  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-ride-reference --exploration-bonus --exploration-bonus-type ride
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_ride  --compact-save --algo ppo --*env MiniGrid-MultiRoomNoisyTV-N7-S4-v0 --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-ride-reference --exploration-bonus --exploration-bonus-type ride
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model test_ride  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --custom-ppo-ride-reference --exploration-bonus --exploration-bonus-type ride
+#
+
+# old
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model ref_rnd   --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --*custom-ppo-rnd --exploration-bonus --exploration-bonus-type rnd
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model ref_ride  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --*custom-ppo-ride --exploration-bonus --exploration-bonus-type ride
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model kc_ref_rnd   --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --*custom-ppo-rnd --exploration-bonus --exploration-bonus-type rnd
+#--slurm_conf jz_medium_gpu --nb_seeds 8 --model kc_ref_ride  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --frames 50000000  --arch original_endpool_res --*custom-ppo-ride --exploration-bonus --exploration-bonus-type ride
+
+# MultiRoom N7 S4
+# with vs ride parametres
+
+## memore and Ref model
+## no
+#--slurm_conf jz_short_gpu_chained --nb_seeds 8 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model new_ref_no --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-rnd-reference
+## rnd
+#--slurm_conf jz_short_gpu_chained --nb_seeds 8 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model new_ref_rnd --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd
+## ride
+#--slurm_conf jz_short_gpu_chained --nb_seeds 8 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model new_ref_ride --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride
+##
+#
+## with vs ride parametres: key corridor
+## no
+#--slurm_conf jz_short_gpu_chained --nb_seeds 8 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model new_kc_ref_no --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10  --ride-ref-agent --*custom-ppo-rnd-reference
+## rnd
+#--slurm_conf jz_short_gpu_chained --nb_seeds 8 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model new_kc_ref_rnd --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10  --ride-ref-agent --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd
+## ride
+#--slurm_conf jz_short_gpu_chained --nb_seeds 8 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model new_kc_ref_ride --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride
+#
+## conclution: it doesn't work with our params, we have to use reference params
+## NOTE: also here recurrence was 1 because it's their envs, for our envs we have to change the recurrence
+
+# testing
+#--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model testing_ref_rnd_agent --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd
+#--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model testing_ref_rnd_preproc --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd
+
+# testing
+#--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model testing_kc_ref_ride_agent --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride
+#--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model testing_kc_ref_ride_preproc --ride-ref-preprocessor --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride
+
+
+# Ref model
+# no
+--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_REF_no  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-rnd-reference
+# rnd
+--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_REF_rnd  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd
+# ride
+--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_REF_ride  --compact-save --algo ppo --*env MiniGrid-MultiRoom-N7-S4-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride
+
+##
+#
+## with vs ride parametres: key corridor
+## no
+--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_kc_REF_no  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10  --ride-ref-agent --*custom-ppo-rnd-reference
+## rnd
+--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_kc_REF_rnd  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10  --ride-ref-agent --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd
+## ride
+--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_kc_REF_ride  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride
+## ride small reward
+#--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_kc_ref_ride_small_rew  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10 --ride-ref-agent --*custom-ppo-ride-reference --exploration-bonus --*exploration-bonus-type ride --intrinsic-reward-coef 0.05
+## rnd small reward
+#--slurm_conf jz_short_gpu_chained --nb_seeds 4 --cpu_cores_per_seed 16 --gpus_per_seed 0.5 --seeds_per_launch 2 --frames 60000000 --model agent_kc_ref_rnd_small_rew  --compact-save --algo ppo --*env MiniGrid-KeyCorridorS3R3-v0  --save-interval 10  --ride-ref-agent --*custom-ppo-rnd-reference --exploration-bonus --*exploration-bonus-type rnd --intrinsic-reward-coef 0.05

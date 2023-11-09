@@ -1,0 +1,106 @@
+# Experiment for NeurIPS
+# Make sure you modify campain_launcher.py to fit your cluster configuration
+# Uncomment each line you want to run, then launch "python3 campain_launcher.py run_NeurIPS.txt" on your slurm cluster
+#
+#
+# NeurIPS Polite
+# PPO + explo bonus
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_BONUS_NoLiar -cs --algo ppo --*env MiniGrid-TalkItOutNoLiarPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning --exploration-bonus --episodic-exploration-bonus --*exploration-bonus-type lang --*exploration-bonus-params 7 50 --*exploration-bonus-tanh 0.6
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_BONUS -cs --algo ppo --*env MiniGrid-TalkItOutPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning --exploration-bonus --episodic-exploration-bonus  --*exploration-bonus-type lang --*exploration-bonus-params 7 50 --*exploration-bonus-tanh 0.6
+# PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_NO_BONUS_NoLiar -cs --algo ppo --*env MiniGrid-TalkItOutNoLiarPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_NO_BONUS -cs --algo ppo --*env MiniGrid-TalkItOutPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# unsocial
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_NoSocial_NO_BONUS_NoLiar -cs --algo ppo --*env MiniGrid-TalkItOutNoLiarPolite-8x8-v0  --*env_args hidden_npc True --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_NoSocial_NO_BONUS -cs --algo ppo --*env MiniGrid-TalkItOutPolite-8x8-v0  --*env_args hidden_npc True --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_RND_NoLiar -cs --algo ppo --*env MiniGrid-TalkItOutNoLiarPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_RND -cs --algo ppo --*env MiniGrid-TalkItOutPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+# PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_RIDE_NoLiar -cs --algo ppo --*env MiniGrid-TalkItOutNoLiarPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_TalkItOutPolite_RIDE -cs --algo ppo --*env MiniGrid-TalkItOutPolite-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+#
+#
+# NeurIPS ShowME
+# PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_NO_BONUS_ABL --compact-save --algo ppo --*env MiniGrid-ShowMeNoSocial-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_NO_BONUS --compact-save --algo ppo --*env MiniGrid-ShowMe-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + explo bonus
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_BONUS_ABL_ --compact-save --algo ppo --*env MiniGrid-ShowMeNoSocial-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning  --exploration-bonus --episodic-exploration-bonus  --*exploration-bonus-type cell --*exploration-bonus-params 3 50 --*exploration-bonus-tanh 0.6
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_BONUS --compact-save --algo ppo --*env MiniGrid-ShowMe-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning  --exploration-bonus --episodic-exploration-bonus  --*exploration-bonus-type cell --*exploration-bonus-params 3 50 --*exploration-bonus-tanh 0.6
+# unsocial
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_NoSocial_NO_BONUS_ABL --compact-save --algo ppo --*env MiniGrid-ShowMeNoSocial-8x8-v0 --*env_args hidden_npc True --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_NoSocial_NO_BONUS --compact-save --algo ppo --*env MiniGrid-ShowMe-8x8-v0 --*env_args hidden_npc True --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_RND_ABL_ --compact-save --algo ppo --*env MiniGrid-ShowMeNoSocial-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_RND --compact-save --algo ppo --*env MiniGrid-ShowMe-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+# PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_RIDE_ABL_ --compact-save --algo ppo --*env MiniGrid-ShowMeNoSocial-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus  --*exploration-bonus-type ride --clipped-rewards
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_ShowMe_RIDE --compact-save --algo ppo --*env MiniGrid-ShowMe-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus  --*exploration-bonus-type ride --clipped-rewards
+#
+#
+# NeurIPS Help (Exiter role)
+# PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_Help_NO_BONUS  --compact-save --algo ppo --*env MiniGrid-Exiter-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + explo bonus
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_Help_BONUS  --compact-save --algo ppo --*env MiniGrid-Exiter-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning  --exploration-bonus --episodic-exploration-bonus  --*exploration-bonus-type cell --*exploration-bonus-params 3 50 --*exploration-bonus-tanh 0.6
+# unsocial
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_Help_NoSocial_NO_BONUS  --compact-save --algo ppo --*env MiniGrid-Exiter-8x8-v0 --*env_args hidden_npc True --dialogue --save-interval 100 --log-interval 100 --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_Help_RND  --compact-save --algo ppo --*env MiniGrid-Exiter-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus  --*exploration-bonus-type rnd --clipped-rewards
+# PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_Help_RIDE  --compact-save --algo ppo --*env MiniGrid-Exiter-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+#
+# DiverseExit
+# PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_DiverseExit_NO_BONUS --compact-save --algo ppo --*env MiniGrid-DiverseExit-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + explo bonus
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_DiverseExit_BONUS --compact-save --algo ppo --*env MiniGrid-DiverseExit-8x8-v0 --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning  --exploration-bonus --episodic-exploration-bonus  --*exploration-bonus-type lang --*exploration-bonus-params 20 50 --*exploration-bonus-tanh 0.6
+# unsocial
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_DiverseExit_NoSocial_NO_BONUS --compact-save --algo ppo --*env MiniGrid-DiverseExit-8x8-v0 --*env_args hidden_npc True --dialogue --save-interval 100 --log-interval 100 --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*ppo-hp-tuning
+# PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_DiverseExit_RND --compact-save --algo ppo --*env MiniGrid-DiverseExit-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+# PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_DiverseExit_RIDE --compact-save --algo ppo --*env MiniGrid-DiverseExit-8x8-v0 --dialogue --save-interval 100 --log-interval 100  --frames 30000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2  --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+#
+#
+# NeurIPS CoinThief
+# PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True npc_view_size 5 npc_look_around True
+# PPO + explo bonus
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True npc_view_size 5 npc_look_around True --exploration-bonus --episodic-exploration-bonus  --exploration-bonus-type cell --*exploration-bonus-params 2 50 --exploration-bonus-tanh 0.6
+# PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2 --*env_args few_actions True npc_view_size 5 npc_look_around True --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+# PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2 --*env_args few_actions True npc_view_size 5 npc_look_around True --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+# unsocial PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True hidden_npc True  npc_view_size 5 npc_look_around True
+# PPO on easy version - visible coin tags
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True tag_visible_coins True npc_view_size 5 npc_look_around True
+# PPO + explo bonus on easy version - visible coin tags
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model coinThief --algo ppo -cs --env MiniGrid-CoinThief-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True tag_visible_coins True npc_view_size 5 npc_look_around True --exploration-bonus --episodic-exploration-bonus  --exploration-bonus-type cell --*exploration-bonus-params 2 50 --exploration-bonus-tanh 0.6
+#
+#
+# NeurIPS Dance
+# PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model dance --algo ppo -cs --env MiniGrid-DanceWithOneNPC-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True dance_len 3
+# PPO + explo bonus
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model dance --algo ppo -cs --env MiniGrid-DanceWithOneNPC-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args few_actions True dance_len 3 --exploration-bonus --episodic-exploration-bonus  --exploration-bonus-type cell --*exploration-bonus-params 3 50 --exploration-bonus-tanh 0.6
+# PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model dance --algo ppo -cs --env MiniGrid-DanceWithOneNPC-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2 --*env_args few_actions True dance_len 3 --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+# unsocial PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model dance --algo ppo -cs --env MiniGrid-DanceWithOneNPC-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --*env_args hidden_npc True few_actions True dance_len 3
+# PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model dance --algo ppo -cs --env MiniGrid-DanceWithOneNPC-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2 --*env_args few_actions True dance_len 3 --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+#
+#
+# NeurIPS SocialEnv
+### PPO
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model socialEnv --algo ppo -cs --env MiniGrid-SocialEnv-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning
+### PPO + explo tests
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model socialEnv --algo ppo -cs --env MiniGrid-SocialEnv-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --ppo-hp-tuning --exploration-bonus --episodic-exploration-bonus  --exploration-bonus-type cell --*exploration-bonus-params 2 50 --exploration-bonus-tanh 0.6
+### PPO + RND
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model socialEnv --algo ppo -cs --env MiniGrid-SocialEnv-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2 --exploration-bonus --*exploration-bonus-type rnd --clipped-rewards
+### PPO + RIDE
+#--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model socialEnv --algo ppo -cs --env MiniGrid-SocialEnv-8x8-v0 --frames 30000000 --dialogue --save-interval 100 --log-interval 100 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2 --exploration-bonus --*exploration-bonus-type ride --clipped-rewards
+#

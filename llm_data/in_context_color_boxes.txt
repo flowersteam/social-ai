@@ -1,0 +1,157 @@
+New episode.
+Obs : 3 steps in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : move forward
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
+New episode.
+Obs : 2 steps to the right there is a closed green lockablebox
+Caretaker: green
+Act : turn right
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
+New episode.
+Obs :  2 steps to the left there is a closed green lockablebox
+Caretaker: green
+Act : turn left
+Obs : 2 steps in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : move forward
+Obs : Right in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
+New episode.
+Obs : 2 steps in front of you and 2 steps to the right there is a closed blue lockablebox
+Caretaker: blue
+Act : move forward
+Obs : 1 steps in front of you and 2 steps to the right there is a closed blue lockablebox
+Caretaker: blue
+Act : move forward
+Obs :  2 steps to the right there is a closed blue lockablebox
+Caretaker: blue
+Act : turn right
+Obs : 2 steps in front of you  there is a closed blue lockablebox
+Caretaker: blue
+Act : move forward
+Obs : Right in front of you  there is a closed blue lockablebox
+Caretaker: blue
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: blue
+Act : toggle
+Success!
+New episode.
+Obs : 2 steps in front of you and 1 steps to the left there is a closed green lockablebox
+Caretaker: green
+Act : move forward
+Obs : 1 steps in front of you and 1 steps to the left there is a closed green lockablebox
+Caretaker: green
+Act : move forward
+Obs : Just to the left of you there is a closed green lockablebox
+Caretaker: green
+Act : turn left
+Obs : Right in front of you  there is a closed green lockablebox
+Caretaker: green
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
+New episode.
+Obs :
+Caretaker: blue
+Act : turn right
+Obs : 1 steps in front of you and 1 steps to the right there is a closed blue lockablebox
+Caretaker: blue
+Act : move forward
+Obs : Just to the right of you there is a closed blue lockablebox
+Caretaker: blue
+Act : turn right
+Obs : Right in front of you  there is a closed blue lockablebox
+Caretaker: blue
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: blue
+Act : toggle
+Success!
+# New episode.
+# turn right
+# Obs :
+# Caretaker: green
+# Act : turn right
+# Obs :
+# Caretaker: green
+# Act : turn right
+# Obs :
+# Caretaker: green
+# Act : move forward
+# Obs :
+# Caretaker: green
+# Act : move forward
+# Obs : 3 steps in front of you  there is a closed green lockablebox
+# Caretaker: green
+# Act : move forward
+# Obs : 2 steps in front of you  there is a closed green lockablebox
+# Caretaker: green
+# Act : move forward
+# Obs : Right in front of you  there is a closed green lockablebox
+# Caretaker: green
+# Act : toggle
+# Obs : Right in front of you  there is a red apple
+# Caretaker: green
+# Act : toggle
+# Success!
+# Obs : Right in front of you  there is a closed brown lockablebox
+# Act : move forward
+New episode.
+Obs : 3 steps in front of you and 3 steps to the left there is a friendly yellow peer. It is looking towards you.
+1 steps to the right there is a closed brown lockablebox
+Caretaker: brown
+Act : turn right
+Obs : Right in front of you there is a closed brown lockablebox
+Caretaker: brown
+Act : toggle
+Obs : Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
+New episode.
+Obs : 1 steps to the right there is a closed blue lockablebox
+Right in front of you there is a closed brown lockablebox
+Caretaker: brown
+Act : toggle
+Obs : 1 steps to the right there is a closed blue lockablebox
+Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
+New episode.
+Obs : 1 steps to the right there is a closed blue lockablebox
+Right in front of you there is a closed brown lockablebox
+Caretaker: brown
+Act : toggle
+Obs : 1 steps to the right there is a closed blue lockablebox
+Right in front of you  there is a red apple
+Caretaker: green
+Act : toggle
+Success!
