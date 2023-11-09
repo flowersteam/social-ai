@@ -19,7 +19,7 @@ RUN pip install -e gym-minigrid
 
 #EXPOSE 7860
 
-CMD ["python", "web_demo/app.py"]
+CMD ["python", "-m", "web_demo.app"]
 
 
 # docker build -t sai_demo  -f web_demo/Dockerfile .
