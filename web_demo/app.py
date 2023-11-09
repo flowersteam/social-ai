@@ -28,6 +28,8 @@ env_label_to_env_name = {
     "Role Reversal Role A (Finetune - test)": "SocialAI-MarblePassACollaborationParamEnv-v1",
     "Imitation (Train)": "SocialAI-EEmulationNoDistrInformationSeekingParamEnv-v1",
     "Imitation (Test)": "SocialAI-EEmulationNoDistrDoorsInformationSeekingParamEnv-v1",
+    "AsocialBox (textworld)": "SocialAI-AsocialBoxInformationSeekingParamEnv-v1",
+    "ColorBoxes (textworld)": "SocialAI-ColorBoxesLLMCSParamEnv-v1",
     "Language Color (Train)": "SocialAI-ELangColorHeldoutDoorsTrainInformationSeekingParamEnv-v1",
     "Language Color (Test)": "SocialAI-ELangColorDoorsTestInformationSeekingParamEnv-v1",
     "Language Feedback (Train)": "SocialAI-ELangFeedbackHeldoutDoorsTrainInformationSeekingParamEnv-v1",
@@ -36,8 +38,6 @@ env_label_to_env_name = {
     "Joint Attention Language Color (Test)": "SocialAI-ELangColorDoorsTestInformationSeekingParamEnv-v1",
     "Apple stealing": "SocialAI-AppleStealingObst_NoParamEnv-v1",
     "Apple stealing (Occlusions)": "SocialAI-AppleStealingObst_MediumParamEnv-v1",
-    "AsocialBox (textworld)": "SocialAI-AsocialBoxInformationSeekingParamEnv-v1",
-    "ColorBoxes (textworld)": "SocialAI-ColorBoxesLLMCSParamEnv-v1",
     "Scaffolding (train - scaf_8: Phase 1)": "SocialAI-AELangFeedbackTrainScaffoldingCSParamEnv-v1",
     "Scaffolding/Formats (test)":"SocialAI-AELangFeedbackTrainFormatsCSParamEnv-v1",
 }
@@ -60,7 +60,6 @@ env = gym.make(env_name)
 def create_bubble_text(env_name, obs, info, full_conversation, textworld_envs):
     if env_name in textworld_envs:
         text_obs = generate_text_obs(obs, info)
-        # bubble_text = "Textworld state:\n" + text_obs
         bubble_text = text_obs
 
     else:
