@@ -26,3 +26,5 @@ plots/*
 retrieve_viz_and_graphics.sh
 retrieve_llm_log.sh
 gym-minigrid/figures/*
+web_demo/static/current_tree
+web_demo/static/current_tree.svg
