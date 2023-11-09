@@ -9,6 +9,8 @@ import gym_minigrid
 import numpy as np
 from gym_minigrid.window import Window
 
+from textworld_utils.utils import generate_text_obs
+
 import os
 
 app = Flask(__name__)
@@ -46,10 +48,26 @@ global env_label
 env_label = list(env_label_to_env_name.keys())[0]
 env_name = env_label_to_env_name[env_label]
 
+
+textworld_envs = ["SocialAI-AsocialBoxInformationSeekingParamEnv-v1", "SocialAI-ColorBoxesLLMCSParamEnv-v1"]
+
 global mask_unobserved
 mask_unobserved = False
 
 env = gym.make(env_name)
+
+
+def create_bubble_text(env_name, obs, info, full_conversation, textworld_envs):
+    if env_name in textworld_envs:
+        text_obs = generate_text_obs(obs, info)
+        # bubble_text = "Textworld state:\n" + text_obs
+        bubble_text = text_obs
+
+    else:
+        bubble_text = format_bubble_text(full_conversation)
+
+    return bubble_text
+
 
 def update_tree():
     selected_parameters = env.current_env.parameters
@@ -116,10 +134,9 @@ def set_mask_unobserved():
 def update_image():
     action_name = request.form.get('action')
 
-
     if action_name == 'done':
         # reset the env and update the tree image
-        obs = env.reset()
+        obs, info = env.reset(with_info=True)
         update_tree()
 
     else:
@@ -145,21 +162,24 @@ def update_image():
 
         obs, reward, done, info = env.step(action)
 
+
     image = env.render('rgb_array', tile_size=32, mask_unobserved=mask_unobserved)
     image_data = np_img_to_base64(image)
 
-
-    bubble_text = format_bubble_text(env.current_env.full_conversation)
+    bubble_text = create_bubble_text(env_name, obs, info, env.current_env.full_conversation, textworld_envs)
 
     return jsonify({'image_data': image_data, "bubble_text": bubble_text})
 
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    obs, info = env.reset(with_info=True)
     image = env.render('rgb_array', tile_size=32, mask_unobserved=mask_unobserved)
     image_data = np_img_to_base64(image)
 
-    bubble_text = format_bubble_text(env.current_env.full_conversation)
+    # bubble_text = format_bubble_text(env.current_env.full_conversation)
+    bubble_text = create_bubble_text(env_name, obs, info, env.current_env.full_conversation, textworld_envs)
 
     available_env_labels = env_label_to_env_name.keys()
 
