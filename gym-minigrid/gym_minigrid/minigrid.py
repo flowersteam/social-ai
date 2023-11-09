@@ -3443,7 +3443,7 @@ class MultiModalMiniGridEnv(MiniGridEnv):
 
         obs = super().render(*args, **kwargs)
 
-        if args[0] == 'human':
+        if args and args[0] == 'human':
             # draw text to the side of the image
             self.window.clear_text()  # erase previous text
             if show_dialogue:

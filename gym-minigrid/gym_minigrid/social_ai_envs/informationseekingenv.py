@@ -1249,7 +1249,7 @@ class InformationSeekingEnv(MultiModalMiniGridEnv):
 
     def render(self, *args, **kwargs):
         obs = super().render(*args, **kwargs)
-        if args[0] == 'human':
+        if args and args[0] == 'human':
             self.window.clear_text()  # erase previous text
             self.window.set_caption(self.full_conversation)
 
