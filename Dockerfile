@@ -12,6 +12,8 @@ RUN apt-get update && \
 
 COPY . .
 
+RUN chmod -R 777 /code
+
 RUN pip install --upgrade -r web_demo/requirements.txt
 RUN pip install -e gym-minigrid
 
