@@ -186,7 +186,7 @@
                 bodyData += `&template=${template}&word=${word}`;
             }
 
-            fetch('/update_image', {
+            fetch('/perform_action', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -204,7 +204,8 @@
                 // Add this to handle the caretaker's utterance
                 let bubble = document.getElementById('caretakerBubble');
                 if(data.bubble_text) {
-                    bubble.innerText = data.bubble_text;
+                    let formattedText = data.bubble_text.replace(/\n/g, '<br>');
+                    bubble.innerHTML = formattedText;
                     bubble.style.display = 'block';
                 } else {
                     bubble.style.display = 'none';
@@ -235,6 +236,56 @@
             });
         });
 
+
+        // handle the change event of the mask unobserved slider change
+        function updateMaskUnobserved() {
+            const maskUnobservedValue = document.querySelector('input[name="mask_unobserved"]').checked;
+
+            fetch('/set_mask_unobserved', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `mask_unobserved=${maskUnobservedValue}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the image src with the new image data
+                document.getElementById('envImage').src = `data:image/jpeg;base64,${data.image_data}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // handle the change event of the textual observations slider change
+        function updateTextualObservations() {
+            const textualObservationsValue = document.querySelector('input[name="textual_observations"]').checked;
+
+            fetch('/set_textual_observations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `textual_observations=${textualObservationsValue}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                let bubble = document.getElementById('caretakerBubble');
+                if(data.bubble_text) {
+                    let formattedText = data.bubble_text.replace(/\n/g, '<br>');
+                    bubble.innerHTML = formattedText;
+                    bubble.style.display = 'block';
+                } else {
+                    bubble.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
     </script>
 </head>
 <body>
@@ -252,12 +303,17 @@
 
         <div class="form-container">
             <span class="form-label">Mask unobserved cells:</span>
-            <form action="/set_mask_unobserved" method="post">
-                <label class="switch">
-                    <input type="checkbox" name="mask_unobserved" value="true" onchange="this.form.submit()" {{ 'checked' if mask_unobserved }}>
-                    <span class="slider round"></span>
-                </label>
-            </form>
+            <label class="switch">
+                <input type="checkbox" name="mask_unobserved" value="true" onchange="updateMaskUnobserved()" {% if mask_unobserved %}checked{% endif %}>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="form-container">
+            <span class="form-label">Textual observation:</span>
+            <label class="switch">
+                <input type="checkbox" name="textual_observations" value="true" onchange="updateTextualObservations()" {% if textual_observations %}checked{% endif %}>
+                <span class="slider round"></span>
+            </label>
         </div>
     </div>
 
@@ -284,12 +340,12 @@
                 Speaking actions:
                 <select id="actionTemplate">
                     {% for templ in grammar_templates %}
-                    <option value="{{ templ }}" {{ 'selected' if templ == "Help" else '' }}>{{ templ }}</option>
+                        <option value="{{ templ }}" {{ 'selected' if templ == "Help" else '' }}>{{ templ }}</option>
                     {% endfor %}
                 </select>
                 <select id="actionWord">
                     {% for word in grammar_words %}
-                    <option value="{{ word }}" {{ 'selected' if word == "please" else '' }}>{{ word }}</option>
+                        <option value="{{ word }}" {{ 'selected' if word == "please" else '' }}>{{ word }}</option>
                     {% endfor %}
                 </select>
                 <button onclick="performAction('speak')">Speak [s]</button>

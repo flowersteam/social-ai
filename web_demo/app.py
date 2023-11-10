@@ -42,7 +42,6 @@ env_label_to_env_name = {
     "Scaffolding/Formats (test)":"SocialAI-AELangFeedbackTrainFormatsCSParamEnv-v1",
 }
 
-# env = gym.make(args.env, **env_args_str_to_dict(args.env_args))
 global env_name
 global env_label
 env_label = list(env_label_to_env_name.keys())[0]
@@ -54,16 +53,23 @@ textworld_envs = ["SocialAI-AsocialBoxInformationSeekingParamEnv-v1", "SocialAI-
 global mask_unobserved
 mask_unobserved = False
 
+global textual_observations
+textual_observations = False
+
 env = gym.make(env_name)
 
+global obs, info
+obs, info = env.reset(with_info=True)
 
-def create_bubble_text(env_name, obs, info, full_conversation, textworld_envs):
-    if env_name in textworld_envs:
-        text_obs = generate_text_obs(obs, info)
-        bubble_text = text_obs
 
+def create_bubble_text(obs, info, full_conversation, textual_observations):
+    if textual_observations:
+        bubble_text = "Textual observation\n\n"+ \
+                      generate_text_obs(obs, info)
     else:
-        bubble_text = format_bubble_text(full_conversation)
+        bubble_text = full_conversation
+
+    bubble_text = format_bubble_text(bubble_text)
 
     return bubble_text
 
@@ -115,6 +121,8 @@ def set_env():
 
     global env  # Declare the env variable as global to modify it
     env = gym.make(env_name)  # Initialize the environment with the new name
+    global obs, info
+    obs, info = env.reset(with_info=True)
     update_tree()  # Update the tree for the new environment
     return redirect(url_for('index'))  # Redirect back to the main page
 
@@ -122,16 +130,29 @@ def set_env():
 @app.route('/set_mask_unobserved', methods=['POST'])
 def set_mask_unobserved():
     global mask_unobserved
-    mask_unobserved_value = request.form.get('mask_unobserved')
-    mask_unobserved = bool(mask_unobserved_value)
+    mask_unobserved = request.form.get('mask_unobserved') == 'true'
 
-    return redirect(url_for('index'))
+    image = env.render('rgb_array', tile_size=32, mask_unobserved=mask_unobserved)
+    image_data = np_img_to_base64(image)
+
+    return jsonify({'image_data': image_data})
+
+@app.route('/set_textual_observations', methods=['POST'])
+def set_textual_observations():
+    global textual_observations
+    textual_observations = request.form.get('textual_observations') == 'true'
+
+    bubble_text = create_bubble_text(obs, info, env.current_env.full_conversation, textual_observations)
+
+    return jsonify({"bubble_text": bubble_text})
 
 
 
-@app.route('/update_image', methods=['POST'])
-def update_image():
+@app.route('/perform_action', methods=['POST'])
+def perform_action():
     action_name = request.form.get('action')
+
+    global obs, info
 
     if action_name == 'done':
         # reset the env and update the tree image
@@ -165,7 +186,7 @@ def update_image():
     image = env.render('rgb_array', tile_size=32, mask_unobserved=mask_unobserved)
     image_data = np_img_to_base64(image)
 
-    bubble_text = create_bubble_text(env_name, obs, info, env.current_env.full_conversation, textworld_envs)
+    bubble_text = create_bubble_text(obs, info, env.current_env.full_conversation, textual_observations)
 
     return jsonify({'image_data': image_data, "bubble_text": bubble_text})
 
@@ -173,12 +194,11 @@ def update_image():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    obs, info = env.reset(with_info=True)
     image = env.render('rgb_array', tile_size=32, mask_unobserved=mask_unobserved)
     image_data = np_img_to_base64(image)
 
     # bubble_text = format_bubble_text(env.current_env.full_conversation)
-    bubble_text = create_bubble_text(env_name, obs, info, env.current_env.full_conversation, textworld_envs)
+    bubble_text = create_bubble_text(obs, info, env.current_env.full_conversation, textual_observations)
 
     available_env_labels = env_label_to_env_name.keys()
 
