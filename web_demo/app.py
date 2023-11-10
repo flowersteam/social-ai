@@ -41,6 +41,40 @@ env_label_to_env_name = {
     "Scaffolding (train - scaf_8: Phase 1)": "SocialAI-AELangFeedbackTrainScaffoldingCSParamEnv-v1",
     "Scaffolding/Formats (test)":"SocialAI-AELangFeedbackTrainFormatsCSParamEnv-v1",
 }
+available_env_labels = [
+    "Full SocialAI environment",
+    "---- Pointing ----",
+    "Pointing (Train)",
+    "Pointing (Test)",
+    "---- Role Reversal ----",
+    "Role Reversal Single Role B (Pretrain - experimental)",
+    "Role Reversal Single Asocial (Pretrain - control)",
+    "Role Reversal Group Role B (Pretrain - experimental)",
+    "Role Reversal Group Asocial (Pretrain - control)",
+    "Role Reversal Role A (Finetune - test)",
+    "---- Imitation ----",
+    "Imitation (Train)",
+    "Imitation (Test)",
+    "---- TextWorld (LLM experiments)  ----",
+    "AsocialBox (textworld)",
+    "ColorBoxes (textworld)",
+    "---- Language Color ----",
+    "Language Color (Train)",
+    "Language Color (Test)",
+    "---- Language Feedback ----",
+    "Language Feedback (Train)",
+    "Language Feedback (Test)",
+    "---- Joint Attention Language Color ----",
+    "Joint Attention Language Color (Train)",
+    "Joint Attention Language Color (Test)",
+    "---- Apple Stealing ----",
+    "Apple stealing",
+    "Apple stealing (Occlusions)",
+    "---- Scaffolding/Formats ----",
+    "Scaffolding (train - scaf_8: Phase 1)",
+    "Scaffolding/Formats (test)"
+]
+assert all([l in available_env_labels for l in env_label_to_env_name.keys()])
 
 global env_name
 global env_label
@@ -205,8 +239,6 @@ def index():
 
     # bubble_text = format_bubble_text(env.current_env.full_conversation)
     bubble_text = create_bubble_text(obs, info, env.current_env.full_conversation, textual_observations)
-
-    available_env_labels = env_label_to_env_name.keys()
 
     grammar_templates = env.grammar.templates
     grammar_words = env.grammar.things

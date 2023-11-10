@@ -337,7 +337,7 @@
             <form method="post" action="/set_env" id="envForm">
                 <select name="env_label" onchange="document.getElementById('envForm').submit();">
                 {% for env in available_env_labels %}
-                    <option value="{{ env }}" {% if env == current_env_label %}selected{% endif %}>{{ env }}</option>
+                    <option value="{{ env }}" {% if env == current_env_label %}selected{% endif %} {% if env.startswith("-")%}disabled{% endif %}>{{ env }}</option>
                 {% endfor %}
                 </select>
             </form>
