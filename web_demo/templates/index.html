@@ -55,8 +55,8 @@
         }
 
         .svg-container {
-            width: 60%;  /* Adjust to desired width */
-            height: 30%;  /* Adjust to desired width */
+            width: 60%;
+            max-height: 300px;
             margin-left: 5px;
             margin-right: 5px;
             margin-bottom: 5px;
@@ -64,8 +64,6 @@
             padding-top: 10px;
             padding-left: 30px;
             padding-right: 30px;
-            overflow-x: auto; /* Show scrollbars when necessary */
-            overflow-y: auto; /* Show scrollbars when necessary */
             border: 5px solid #ccc; /* Optional: just to visualize the container's boundaries */
             border-radius: 10px; /* uniform roundness */
             box-shadow: 3px 3px 5px #888888; /* horizontal offset | vertical offset | blur radius | color */
@@ -103,8 +101,14 @@
         }
 
         #envImage {
-            max-width: 90%;  /* or whatever size you prefer */
+            width: 100%; /* Make image responsive */
+            min-width: 500px;
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove default image inline behaviors */
+            margin-left: auto; /* Center the image horizontally if needed */
+            margin-right: auto; /* Center the image horizontally if needed */
         }
+
 
         .bubble {
             margin-left: 20px;  /* space between the image and the bubble */
@@ -113,8 +117,9 @@
             border-radius: 10px;
             padding: 10px;
             width: max-content;
-            min-width: 300px;  /* adjust if necessary */
-            max-width: 300px;  /* adjust if necessary */
+            width: 100%; /* Make image responsive */
+            height: auto; /* Maintain aspect ratio */
+            min-width: 500px;
             margin-bottom: 20px;
         }
 
@@ -293,8 +298,21 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Add this to handle the caretaker's utterance
                 let bubble = document.getElementById('caretakerBubble');
-                if(data.bubble_text) {
+
+                // Check for success
+                if (data.done) {
+                    if (data.success) {
+                        bubble.innerHTML = '<br><div style="text-align: center; color: green;">SUCCESS!</div><br>' +
+                           '<div style="text-align: center; color: gray; font-style: italic; font-size: smaller;">(press Enter to continue)</div><br>';
+                        bubble.style.display = 'block';
+                    } else {
+                        bubble.innerHTML = '<br><div style="text-align: center; color: red;">FAILURE!</div><br>' +
+                           '<div style="text-align: center; color: gray; font-style: italic; font-size: smaller;">(press Enter to continue)</div><br>';
+                        bubble.style.display = 'block';
+                    }
+                } else if (data.bubble_text) {
                     let formattedText = data.bubble_text.replace(/\n/g, '<br>');
                     bubble.innerHTML = formattedText;
                     bubble.style.display = 'block';
