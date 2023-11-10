@@ -203,13 +203,28 @@
 
                 // Add this to handle the caretaker's utterance
                 let bubble = document.getElementById('caretakerBubble');
-                if(data.bubble_text) {
+
+                // Check for success
+                if (data.done) {
+                    if (data.success) {
+                        bubble.innerHTML = '<br><div style="text-align: center; color: green;">SUCCESS!</div><br>' +
+                           '<div style="text-align: center; color: gray; font-style: italic; font-size: smaller;">(press Enter to continue)</div><br>';
+                        bubble.style.display = 'block';
+                    } else {
+                        bubble.innerHTML = '<br><div style="text-align: center; color: red;">FAILURE!</div><br>' +
+                           '<div style="text-align: center; color: gray; font-style: italic; font-size: smaller;">(press Enter to continue)</div><br>';
+                        bubble.style.display = 'block';
+                    }
+                } else if (data.bubble_text) {
                     let formattedText = data.bubble_text.replace(/\n/g, '<br>');
                     bubble.innerHTML = formattedText;
                     bubble.style.display = 'block';
                 } else {
                     bubble.style.display = 'none';
                 }
+
+
+
             })
             .catch(error => {
                 console.error('Error:', error);

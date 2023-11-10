@@ -157,6 +157,7 @@ def perform_action():
     if action_name == 'done':
         # reset the env and update the tree image
         obs, info = env.reset(with_info=True)
+        done = False
         update_tree()
 
     else:
@@ -188,7 +189,12 @@ def perform_action():
 
     bubble_text = create_bubble_text(obs, info, env.current_env.full_conversation, textual_observations)
 
-    return jsonify({'image_data': image_data, "bubble_text": bubble_text})
+    return jsonify({
+        'image_data': image_data,
+        'success': info["success"],
+        'done': done,
+        'bubble_text': bubble_text
+    })
 
 
 
