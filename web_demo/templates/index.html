@@ -219,18 +219,25 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.body.addEventListener("keydown", function(event) {
                 if (event.key === "ArrowLeft") {
+                    event.preventDefault();
                     performAction('left');
                 } else if (event.key === "ArrowUp") {
+                    event.preventDefault();
                     performAction('forward');
                 } else if (event.key === "ArrowRight") {
+                    event.preventDefault();
                     performAction('right');
                 } else if (event.key === "s") {
+                    event.preventDefault();
                     performAction('speak');
                 } else if (event.key === "Spacebar" || event.key === " ") {
+                    event.preventDefault();
                     performAction('toggle');
                 } else if (event.key === "Shift") { // You had two conditions for Shift, so I've merged them.
+                    event.preventDefault();
                     performAction('noop');
                 } else if (event.key === "Enter") {
+                    event.preventDefault();
                     performAction('done');
                 }
             });
