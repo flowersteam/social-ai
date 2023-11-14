@@ -8,6 +8,7 @@ import gym
 import gym_minigrid
 import numpy as np
 from gym_minigrid.window import Window
+from gym_minigrid.curriculums import SelectedParametersOrRandomCurriculum
 
 from textworld_utils.utils import generate_text_obs
 
@@ -34,8 +35,8 @@ env_label_to_env_name = {
     "Language Color (Test)": "SocialAI-ELangColorDoorsTestInformationSeekingParamEnv-v1",
     "Language Feedback (Train)": "SocialAI-ELangFeedbackHeldoutDoorsTrainInformationSeekingParamEnv-v1",
     "Language Feedback (Test)": "SocialAI-ELangFeedbackDoorsTestInformationSeekingParamEnv-v1",
-    "Joint Attention Language Color (Train)": "SocialAI-ELangColorHeldoutDoorsTrainInformationSeekingParamEnv-v1",
-    "Joint Attention Language Color (Test)": "SocialAI-ELangColorDoorsTestInformationSeekingParamEnv-v1",
+    "Joint Attention Language Color (Train)": "SocialAI-JAELangColorHeldoutDoorsTrainInformationSeekingParamEnv-v1",
+    "Joint Attention Language Color (Test)": "SocialAI-JAELangColorDoorsTestInformationSeekingParamEnv-v1",
     "Apple stealing": "SocialAI-AppleStealingObst_NoParamEnv-v1",
     "Apple stealing (Occlusions)": "SocialAI-AppleStealingObst_MediumParamEnv-v1",
     "Scaffolding (train - scaf_8: Phase 1)": "SocialAI-AELangFeedbackTrainScaffoldingCSParamEnv-v1",
@@ -96,6 +97,12 @@ global obs, info
 obs, info = env.reset(with_info=True)
 
 
+
+
+
+def get_parameter_options(env):
+    return env.get_potential_params()
+
 def create_bubble_text(obs, info, full_conversation, textual_observations):
     if textual_observations:
         bubble_text = "Textual observation\n\n"+ \
@@ -110,6 +117,7 @@ def create_bubble_text(obs, info, full_conversation, textual_observations):
 
 def update_tree():
     selected_parameters = env.current_env.parameters
+    print("sel param:", selected_parameters)
     selected_env_type = selected_parameters["Env_type"]
 
     assert selected_env_type in env_types, f"Env_type {selected_env_type} not in {env_types}"
@@ -143,6 +151,27 @@ def format_bubble_text(text):
         lines = [lines[0], "...."] + lines[-8:]
 
     return "\n".join(lines)
+
+
+
+
+
+@app.route('/set_env_params', methods=['POST'])
+def set_env_params():
+    global env
+    selected_params_ids = request.get_json()
+
+    selected_parameters = {
+        env.parameter_tree.get_node_for_id(k): env.parameter_tree.get_node_for_id(v) for k,v in selected_params_ids.items()
+    }
+    global obs, info
+
+    selected_parameters_curriuclum = SelectedParametersOrRandomCurriculum(selected_parameters)
+
+    obs, info = env.reset(with_info=True, ACL=selected_parameters_curriuclum)
+    update_tree()  # Update the tree for the new environment
+    return jsonify({"success": True}), 200
+    # return redirect(url_for('index'))  # Redirect back to the main page
 
 
 @app.route('/set_env', methods=['POST'])
@@ -217,7 +246,6 @@ def perform_action():
 
         obs, reward, done, info = env.step(action)
 
-
     image = env.render('rgb_array', tile_size=32, mask_unobserved=mask_unobserved)
     image_data = np_img_to_base64(image)
 
@@ -253,6 +281,8 @@ def index():
         current_env_label=env_label,
         grammar_templates=grammar_templates,
         grammar_words=grammar_words,
+        parameter_options=get_parameter_options(env),
+        current_parameters=env.current_params
     )
 
 

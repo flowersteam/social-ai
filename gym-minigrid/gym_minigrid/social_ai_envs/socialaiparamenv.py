@@ -297,6 +297,16 @@ class SocialAIParamEnv(gym.Env):
 
         return tree
 
+    def get_potential_params(self):
+        all_params = self.parameter_tree.get_all_params()
+        potential_params = {
+            k: v for k, v in all_params.items() if k in self.current_params.keys()
+        }
+        return potential_params
+
+    def get_all_params(self):
+        return self.parameter_tree.get_all_params()
+
     def construct_env_from_params(self, params):
         params_labels = {k.label: v.label for k, v in params.items()}
         if params_labels['Env_type'] == "Collaboration":
@@ -329,14 +339,19 @@ class SocialAIParamEnv(gym.Env):
 
         return env, reset_kwargs
 
-    def reset(self, with_info=False):
+    def reset(self, with_info=False, selected_params=None, ACL=None):
         # select a new social environment at random, for each new episode
 
         old_window = None
         if self.current_env:  # a previous env exists, save old window
             old_window = self.current_env.window
 
-        self.current_params = self.parameter_tree.sample_env_params(ACL=self.curriculum)
+        if selected_params is not None:
+            self.current_params = selected_params
+        elif ACL is not None:
+            self.current_params = self.parameter_tree.sample_env_params(ACL=ACL)
+        else:
+            self.current_params = self.parameter_tree.sample_env_params(ACL=self.curriculum)
 
         self.current_env, reset_kwargs = self.construct_env_from_params(self.current_params)
         assert reset_kwargs is not {}
@@ -360,9 +375,8 @@ class SocialAIParamEnv(gym.Env):
         else:
             return obs
 
-    def reset_with_info(self):
-        return self.reset(with_info=True)
-
+    def reset_with_info(self, selected_params=None, ACL=None):
+        return self.reset(with_info=True, selected_params=selected_params, ACL=ACL)
 
     def seed(self, seed=1337):
         # Seed the random number generator

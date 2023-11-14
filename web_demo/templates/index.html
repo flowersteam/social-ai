@@ -54,10 +54,10 @@
             margin-bottom: 10px; /* Adds a space between the two rows */
         }
 
-        .svg-container {
+        .tree-container {
             width: 60%;
             min-width: 1000px;
-            max-height: 300px;
+            max-height: 600px;
             margin-left: 5px;
             margin-right: 5px;
             margin-bottom: 5px;
@@ -204,8 +204,24 @@
             .then(data => {
                 document.getElementById('envImage').src = `data:image/jpeg;base64,${data.image_data}`;
                 if (actionName === "done") {
-                    const svgTree = document.getElementById('svgTree');
-                    svgTree.data = `./static/current_tree.svg?_=${data.timestamp}`;
+
+                    // Save the scroll position in sessionStorage before reloading
+                    sessionStorage.setItem('scrollPosition', window.scrollY);
+                    console.log(window.scrollY);
+
+                    // Function to reload the page with updated URL parameter
+                    function reloadPage() {
+                        let currentUrl = new URL(window.location.href);
+                        currentUrl.searchParams.set('_', new Date().getTime());
+                        window.location.href = currentUrl.href;
+                    }
+
+                    // Call the function to reload the page
+                    reloadPage();
+
+<!--                    const svgTree = document.getElementById('svgTree');-->
+<!--                    svgTree.data = `./static/current_tree.svg?_=${data.timestamp}`;-->
+<!--                    // todo: update the dropdown lists for parameters-->
                 }
 
                 // Add this to handle the caretaker's utterance
@@ -236,6 +252,7 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+
         }
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -327,7 +344,49 @@
             });
         }
 
+        function setEnvParams() {
+            // Collect data from dropdowns
+            var data = {};
 
+            {% for key in parameter_options.keys() %}
+            data['{{ key.id }}'] = document.getElementById('{{ key.id }}').value;
+            {% endfor %}
+
+            // Send data to Flask backend
+            fetch('/set_env_params', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if(response.ok) {
+                    // If the request was successful, reload the page without cache
+                    let currentUrl = new URL(window.location.href);
+                    currentUrl.searchParams.set('_', new Date().getTime());
+                    window.location.href = currentUrl.href;
+                } else {
+                    // Handle errors
+                    console.error('Error in setEnvParams:', response);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        }
+
+    function restoreScrollPosition() {
+        let savedScrollPosition = parseInt(sessionStorage.getItem('scrollPosition'));
+        if (!isNaN(savedScrollPosition)) {
+            window.scrollTo(0, savedScrollPosition);
+            sessionStorage.removeItem('scrollPosition');
+        }
+    }
+
+    // Attach the restoreScrollPosition function to the appropriate event
+    window.addEventListener('load', restoreScrollPosition);
     </script>
 </head>
 <body>
@@ -360,8 +419,29 @@
     </div>
 
     <p>This is the sampling tree. The current sampled parameters are highlighted blue</p>
-    <div class="svg-container">
-        <object id="svgTree" type="image/svg+xml" data="{{ url_for('static', filename='current_tree.svg', _=timestamp) }}" width="95%" height="95%">Your browser does not support SVG</object>
+    <div class="tree-container" >
+        <div class="form-container">
+            <span class="form-label">Select Parameters:</span>
+            <form method="post" id="paramsEnvForm">
+                {% set ns = namespace(lvl=1) %}
+                {% for key, options in parameter_options.items() %}
+                    {% if key.level != ns.lvl %}
+                        {% if ns.lvl >= 0 %}<hr>{% endif %}
+                    {% set ns.lvl = key.level %}
+                    {% endif %}
+
+                    <label>{{ key.label }}</label>
+                    <select name="{{ key }}" id="{{ key.id }}" onchange="setEnvParams();">
+                        {% for option in options %}
+                        <option value="{{ option.id }}" {% if current_parameters[key].id == option.id %}selected{% endif %} >
+                            {{ option.label }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                {% endfor %}
+            </form>
+        </div>
+        <object id="svgTree" type="image/svg+xml" data="{{ url_for('static', filename='current_tree.svg', _=timestamp) }}" width="95%" height="70%">Your browser does not support SVG</object>
     </div>
 
     <p>This is the environment.</p>

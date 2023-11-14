@@ -78,6 +78,7 @@ class Caretaker(NPC):
             self.distractor_obj = self.env.distractor_generator
 
         if self.env.ja_recursive:
+            # how many objects
             if int(self.env.parameters["N"]) == 1:
                 self.ja_decoy = self.env._rand_elem([self.target_obj])
             else:
@@ -100,6 +101,7 @@ class Caretaker(NPC):
 
         if self.env.hidden_npc:
             return reply, info
+
 
         scaffolding = self.env.parameters.get("Scaffolding", "N") == "Y"
         language_color = False
@@ -135,7 +137,7 @@ class Caretaker(NPC):
             assert action is None
 
             if self.env.ja_recursive:
-                # look at the center of the room (this makes the cue giving in side and outisde JA different)
+                # look at the center of the room (this makes the cue giving inside and outisde JA different)
                 action = self.look_at_action([self.env.current_width // 2, self.env.current_height // 2])
             else:
                 # look at the agent
@@ -550,7 +552,7 @@ class InformationSeekingEnv(MultiModalMiniGridEnv):
             num_of_colors = self.n_colors
 
         # additional test for recursivness of joint attention -> cues are given outside of JA
-        self.ja_recursive = self.parameters.get("JA_recursive", False) if self.parameters else False
+        self.ja_recursive = self.parameters.get("JA_recursive", False) == "Y" if self.parameters else False
 
         self.add_obstacles()
         if self.obstacles != "No":

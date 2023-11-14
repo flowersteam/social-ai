@@ -33,17 +33,17 @@ class AsocialBoxInformationSeekingParamEnv(SocialAIParamEnv):
         # Information seeking
         inf_seeking_nd = tree.add_node("Information_seeking", parent=env_type_nd, type="value")
 
-        prag_fr_compl_nd = tree.add_node("Pragmatic_frame_complexity", parent=inf_seeking_nd, type="param")
-        tree.add_node("No", parent=prag_fr_compl_nd, type="value")
-
-        # scaffolding
-        scaffolding_nd = tree.add_node("Scaffolding", parent=inf_seeking_nd, type="param")
-        scaffolding_N_nd = tree.add_node("N", parent=scaffolding_nd, type="value")
-
-        cue_type_nd = tree.add_node("Cue_type", parent=scaffolding_N_nd, type="param")
-        tree.add_node("Language_Color", parent=cue_type_nd, type="value")
-        tree.add_node("Language_Feedback", parent=cue_type_nd, type="value")
-        tree.add_node("Pointing", parent=cue_type_nd, type="value")
+        # prag_fr_compl_nd = tree.add_node("Pragmatic_frame_complexity", parent=inf_seeking_nd, type="param")
+        # tree.add_node("No", parent=prag_fr_compl_nd, type="value")
+        #
+        # # scaffolding
+        # scaffolding_nd = tree.add_node("Scaffolding", parent=inf_seeking_nd, type="param")
+        # scaffolding_N_nd = tree.add_node("N", parent=scaffolding_nd, type="value")
+        #
+        # cue_type_nd = tree.add_node("Cue_type", parent=scaffolding_N_nd, type="param")
+        # tree.add_node("Language_Color", parent=cue_type_nd, type="value")
+        # tree.add_node("Language_Feedback", parent=cue_type_nd, type="value")
+        # tree.add_node("Pointing", parent=cue_type_nd, type="value")
 
         problem_nd = tree.add_node("Problem", parent=inf_seeking_nd, type="param")
 

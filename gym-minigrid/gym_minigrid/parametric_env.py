@@ -3,6 +3,7 @@ from graphviz import Digraph
 import re
 import random
 from termcolor import cprint
+from collections import defaultdict
 
 
 class Node:
@@ -17,6 +18,13 @@ class Node:
         self.parent = parent
         self.children = []
         self.type = type
+
+        # calculate node's level
+        parent_ = self.parent
+        self.level = 1
+        while parent_ is not None:
+            self.level += 1
+            parent_ = parent_.parent
 
     def __repr__(self):
         return f"{self.id}({self.type})-'{self.label}'"
@@ -36,6 +44,9 @@ class ParameterTree(ABC):
     def create_digraph(self):
         self.tree = Digraph("unix", format='svg')
         self.tree.attr(size='30,100')
+
+    def get_node_for_id(self, id):
+        return self.nodes[id]
 
     def add_node(self, label, parent=None, type="param"):
         """
@@ -124,6 +135,20 @@ class ParameterTree(ABC):
                 cprint("{}: {} ({})".format(node.type, node.label, node.id), color)
 
             nodes.extend(node.children)
+
+    def get_all_params(self):
+        all_params = defaultdict(list)
+
+        nodes = [self.root]
+        while nodes:
+            node = nodes.pop(0)
+
+            if node.type == "value":
+                all_params[node.parent].append(node)
+
+            nodes.extend(node.children)
+
+        return all_params
 
     def draw_tree(self, filename, selected_parameters={}, ignore_labels=[], folded_nodes=[], label_parser={}, save=True):
 

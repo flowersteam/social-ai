@@ -3,6 +3,27 @@ import warnings
 import numpy as np
 import random
 
+class SelectedParametersOrRandomCurriculum():
+    def __init__(self, selected_parameters):
+
+        self.selected_parameters = selected_parameters
+
+    def choose(self, node, chosen_parameters):
+        # if in selected_parameters choose the selected one
+        # else choose a random child
+
+        assert node.type == 'param'
+
+        if node in self.selected_parameters:
+            chosen = self.selected_parameters[node]
+            assert chosen in node.children
+            return chosen
+
+        else:
+            return random.choice(node.children)
+
+
+
 class ScaffoldingExpertCurriculum:
 
     def __init__(self, type, minimum_episodes=1000, average_interval=500, phase_thresholds=(0.75, 0.75)):
