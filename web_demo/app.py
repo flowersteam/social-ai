@@ -21,7 +21,7 @@ env_types = ["Information_seeking", "Collaboration", "AppleStealing"]
 env_label_to_env_name = {
     "Full SocialAI environment": "SocialAI-SocialAIParamEnv-v1",  # all
     "Pointing (Train)": "SocialAI-EPointingHeldoutDoorsTrainInformationSeekingParamEnv-v1",  # Pointing Train
-    "Pointing (Test)": "SocialAI-EPointingBoxesTestInformationSeekingParamEnv-v1",  # Pointing Test
+    "Pointing (Test)": "SocialAI-EPointingDoorsTestInformationSeekingParamEnv-v1",  # Pointing Test
     "Role Reversal Single Role B (Pretrain - experimental)": "SocialAI-MarblePassBCollaborationParamEnv-v1",
     "Role Reversal Single Asocial (Pretrain - control)": "SocialAI-AsocialMarbleCollaborationParamEnv-v1",
     "Role Reversal Group Role B (Pretrain - experimental)": "SocialAI-RoleReversalGroupExperimentalCollaborationParamEnv-v1",
