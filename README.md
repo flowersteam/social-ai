@@ -90,7 +90,7 @@ To run the experiments on a regular machine `run_SAI_final_case_studies.txt` con
 To recreate all the experiments from the paper on a slurm based server configure the `campaign_launcher.py` script and run:
 
 ```
-python campaign_launcher.py run_NeurIPS.txt
+python campaign_launcher.py run_SAI_final_case_studies.txt
 ```
 
 [//]: # (The list of all the experiments and their parameters can be seen in run_NeurIPS.txt)

@@ -2,7 +2,7 @@ import numpy
 import torch
 import torch.nn.functional as F
 from torch_ac.intrinsic_reward_models import compute_forward_dynamics_loss, compute_inverse_dynamics_loss
-from sklearn.metrics import f1_score
+# from sklearn.metrics import f1_score
 
 from torch_ac.algos.base import BaseAlgo
 
@@ -115,6 +115,7 @@ class PPOAlgo(BaseAlgo):
         if self.exploration_bonus and "soc_inf" in self.exploration_bonus_type:
             adam_params = list(dict.fromkeys(list(self.acmodel.parameters()) + list(self.moa_net.parameters())))
             self.optimizer = torch.optim.Adam(adam_params, lr, eps=adam_eps)
+            from sklearn.metrics import f1_score
 
         else:
             self.optimizer = torch.optim.Adam(self.acmodel.parameters(), lr, eps=adam_eps)
