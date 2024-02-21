@@ -339,7 +339,6 @@ if args.env not in [
 ]:
     if args.recurrence <= 1:
         print("You are using recurrence {} with {} env. This is probably unintentional.".format(args.recurrence, args.env))
-        # warnings.warn("You are using recurrence {} with {} env. This is probably unintentional.".format(args.recurrence, args.env))
 
 
 args.mem = args.recurrence > 1

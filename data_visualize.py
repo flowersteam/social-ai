@@ -317,6 +317,8 @@ color_dict = {
 
 }
 
+title_tag = None
+
 if load_pattern == "RR_single":
     save = False
     show_plot = True
@@ -334,6 +336,8 @@ if load_pattern == "RR_single":
     study_train = True
     study_eval = False
 
+    title_tag = "(A)"
+
 elif load_pattern == "RR_group":
 
     load_pattern = "_"
@@ -349,6 +353,8 @@ elif load_pattern == "RR_group":
     plot_only_aggregated_test = False
     study_train = True
     study_eval = False
+
+    title_tag = "(B)"
 
 
 elif load_pattern == "scaffolding":
@@ -399,6 +405,8 @@ elif load_pattern == "pointing":
 elif load_pattern == "color":
     study_train = True
     study_eval = True
+
+    title_tag = "(B)"
 
     plot_aggregated_test = False
     plot_only_aggregated_test = False
@@ -473,6 +481,8 @@ elif load_pattern == "feedback":
     study_train = True
     study_eval = True
 
+    title_tag = "(A)"
+
     plot_aggregated_test = False
     plot_only_aggregated_test = False
     max_x_lim = 18
@@ -504,6 +514,8 @@ elif load_pattern == "imitation_train":
     max_x_lim = 18
 
     load_pattern = "_"
+
+    title_tag = "(A)"
 
     test_envs_to_plot = None
     plot_path = "../case_studies_final_figures/Imitation_train"
@@ -539,6 +551,8 @@ elif load_pattern == "imitation_train_intro":
     test_envs_to_plot = None
     plot_path = "../case_studies_final_figures/Imitation_train_intro"
 
+    title_tag = "(B)"
+
     require_patterns = [
         "20-01_Imitation_PPO_CB_exploration-bonus-type_cell_exploration-bonus-params__0.25_50",
         "20-01_Imitation_PPO_CB_exploration-bonus-type_cell_exploration-bonus-params__0.5_50",
@@ -565,6 +579,8 @@ elif load_pattern == "imitation_test":
     test_envs_to_plot = None
     plot_path = "../case_studies_final_figures/Imitation_test"
 
+    title_tag = "(C)"
+
     require_patterns = [
         "20-01_Imitation_PPO_CB_exploration-bonus-type_cell_exploration-bonus-params__0.25_50",
         "20-01_Imitation_PPO_CB_exploration-bonus-type_cell_exploration-bonus-params__0.5_50",
@@ -577,6 +593,8 @@ elif load_pattern == "imitation_test":
     to_compare = None
 
 elif load_pattern == "pilot_pointing":
+
+    title_tag = "(A)"
 
     study_train = True
     study_eval = False
@@ -611,6 +629,8 @@ elif load_pattern == "pilot_pointing":
     to_compare = None
 
 elif load_pattern == "pilot_color":
+
+    title_tag = "(B)"
 
     study_train = True
     study_eval = False
@@ -675,6 +695,8 @@ elif load_pattern == "formats_train":
 
 elif load_pattern == "adversarial":
 
+    title_tag = "(A)"
+
     show_plot = False
     save = True
 
@@ -718,6 +740,7 @@ elif load_pattern == "adversarial":
 
 elif load_pattern == "adversarial_stumps":
 
+    title_tag = "(B)"
 
     study_train = True
     study_eval = False
@@ -868,9 +891,7 @@ def plot_with_shade(subplot_nb, ax, x, y, err, color, shade_color, label,
     ax.set_xlim(xmin=xlim[0], xmax=xlim[1])
     ax.set_ylim(bottom=ylim[0], top=ylim[1])
     if title:
-        ax.set_title(title, fontsize=title_fontsize)
-
-
+        ax.set_title(title, fontsize=title_fontsize, y=1.03)
 
 
 # only one figure is drawn -> maybe we can add loops later
@@ -1343,7 +1364,7 @@ for curve_i, (curve_ID, model_id_data) in enumerate(to_plot_dict.items()):
         ylim=[0, max_y],
         xlabel=xlabel,
         ylabel=ylabel,
-        title=None,
+        title=title_tag,
         labelsize=fontsize,
         fontsize=fontsize,
         title_fontsize=title_fontsize,
@@ -1383,7 +1404,8 @@ if static_lines:
 if plot_path:
     f.savefig(plot_path+".png")
     f.savefig(plot_path+".svg")
-    print(f"Plot saved to {plot_path}.[png/svg].")
+    f.savefig(plot_path+".jpeg", dpi=300)
+    print(f"Plot saved to {plot_path}.[png/svg/jpeg].")
 
 
 # Summary dict
