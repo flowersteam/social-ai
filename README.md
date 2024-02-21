@@ -27,13 +27,6 @@ Additional repositories used:
 
 ## Installation
 
-[comment]: <> (Clone the repo)
-
-[comment]: <> (```)
-
-[comment]: <> (git clone https://gitlab.inria.fr/gkovac/act-and-speak.git)
-
-[comment]: <> (```)
 
 Create and activate your conda env
 ```
@@ -70,10 +63,16 @@ You can test different enviroments with the ```--env``` parameter.
 
 To train a policy, run:
 ```train
-python -m scripts.train --model test_model_name --seed 1  --compact-save --algo ppo --env SocialAI-AsocialBoxInformationSeekingParamEnv-v1 --dialogue --save-interval 1 --log-interval 1 --frames 5000000 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2
+python -m scripts.train --model test_model_name/1 --seed 1  --compact-save --algo ppo --env SocialAI-AsocialBoxInformationSeekingParamEnv-v1 --dialogue --save-interval 1 --log-interval 1 --frames 5000000 --multi-modal-babyai11-agent --arch original_endpool_res --custom-ppo-2
 `````
 
 The policy should be above 0.95 success rate after the first 2M environment interactions.
+
+
+To plot the curve run:
+```commandline
+python data_visualize.py test_model_name
+```
 
 ### Recreating all the experiments 
 
