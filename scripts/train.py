@@ -521,6 +521,7 @@ assert sum(map(int, [
     args.multi_headed_agent,
 ])) <= 1
 
+
 if args.multi_modal_babyai11_agent:
     acmodel = MultiModalBaby11ACModel(
         obs_space=obs_space,

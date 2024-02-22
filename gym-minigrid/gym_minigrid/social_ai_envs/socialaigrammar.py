@@ -29,7 +29,7 @@ class SocialAIGrammar(object):
         "the drawer", "the fridge", "the floor", "the lamp", "the trash can", "the chair", "the bed", "the sofa"
     ]
     assert len(templates)*len(things) == 64
-    print("language complexity {}:".format(len(templates)*len(things)))
+    # print("language complexity {}:".format(len(templates)*len(things)))
 
     grammar_action_space = spaces.MultiDiscrete([len(templates), len(things)])
 
