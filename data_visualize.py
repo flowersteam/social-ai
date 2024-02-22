@@ -17,8 +17,6 @@ from pathlib import Path
 import pickle
 from scipy import stats
 
-save = True
-show_plot = False
 
 metrics = ['success_rate_mean']
 
@@ -284,7 +282,6 @@ color_dict = { }
 
 title_tag = None
 
-plot_path = "plots/testplot"
 
 require_patterns = ["_"]
 
@@ -297,7 +294,6 @@ plot_only_aggregated_test = False
 smooth_factor = 0
 
 test_envs_to_plot = None
-plot_path = "../case_studies_final_figures/test"
 
 color_dict = None
 
@@ -312,7 +308,7 @@ if to_compare is None and len(require_patterns) == 2 and "_" not in require_patt
     to_compare = [(require_patterns[0], require_patterns[1], "black")]
 
 
-save=False
+plot_path = "plots/testplot"
 show_plot = True
 
 

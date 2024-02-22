@@ -43,6 +43,14 @@ pip install -e gym-minigrid
 conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia
 ```
 
+## Jupyter Notebook
+You can start the jupyter notebook with examples of usage with:
+```
+jupyter notebook 
+```
+
+You can also play with our [google colab notebook](https://colab.research.google.com/drive/1LrbcRzIJwptZ9OdFko4pIFw72joTyW5q?usp=sharing)
+
 ## Interactive policy
 
 To run an enviroment in the interactive mode run:
@@ -52,6 +60,10 @@ python -m scripts.manual_control.py
 
 You can test different enviroments with the ```--env``` parameter.
 
+## Interactive demo
+You can test our [interactive hugginface spaces demo](https://huggingface.co/spaces/flowers-team/SocialAISchool)
+
+There you can create different enviroments and control the agent inside them.
 
 
 
@@ -74,17 +86,28 @@ To plot the curve run:
 python data_visualize.py test_model_name
 ```
 
-### Recreating all the experiments 
+To visualize the policy, run:
+```
+python -m scripts.visualize --model storage/test_model_name/1/ --pause 0.1 --seed $RANDOM --episodes 20 --gif viz/test --env-name SocialAI-AsocialBoxInformationSeekingParamEnv-v1 ```
+```
+
+To evaluate a on a different environment, run:
+
+```
+python -m scripts.evaluate_new --episodes 500  --test-set-seed 1  --model-label test_model --eval-env SocialAI-TestLanguageFeedbackSwitchesInformationSeekingParamEnv-v1  --model-to-evaluate storage/test/ --n-seeds 8
+````
+
+## Recreating all the experiments 
 
 See ```run_SAI_final_case_studies.txt``` for the experiments in the paper.
 
-#### Regular machine
+### Regular machine
 
-To run the experiments on a regular machine `run_SAI_final_case_studies.txt` contains all the bash commands running the RL experiments.
+To run the experiments on a regular machine `run_SAI_final_case_studies.txt` contains all the bash commands to run the RL experiments.
 
 
 
-#### Slurm based cluster (todo:)
+### Slurm based cluster (todo:)
 
 To recreate all the experiments from the paper on a slurm based server configure the `campaign_launcher.py` script and run:
 
@@ -92,45 +115,6 @@ To recreate all the experiments from the paper on a slurm based server configure
 python campaign_launcher.py run_SAI_final_case_studies.txt
 ```
 
-[//]: # (The list of all the experiments and their parameters can be seen in run_NeurIPS.txt)
-
-[//]: # ()
-[//]: # (For example the bash equivalent of the following configuration:)
-
-[//]: # (```)
-
-[//]: # (--slurm_conf jz_long_2gpus_32g --nb_seeds 16 --model NeurIPS_Help_NoSocial_NO_BONUS_ABL  --compact-save --algo ppo --*env MiniGrid-AblationExiter-8x8-v0 --*env_args hidden_npc True --dialogue --save-interval 10 --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2)
-
-[//]: # (```)
-
-[//]: # (is:)
-
-[//]: # (```)
-
-[//]: # (for SEED in {1..16})
-
-[//]: # (do)
-
-[//]: # (    python -m scripts.train --model NeurIPS_Help_NoSocial_NO_BONUS_ABL  --compact-save --algo ppo --*env MiniGrid-AblationExiter-8x8-v0 --*env_args hidden_npc True --dialogue --save-interval 10 --frames 5000000 --*multi-modal-babyai11-agent --*arch original_endpool_res --*custom-ppo-2 --seed $SEED & )
-
-[//]: # (done)
-
-[//]: # (```)
-
-
-
-## Evaluation
-
-To evaluate a policy, run:
-
-```eval
-python -m scripts.evaluate_new --episodes 500  --test-set-seed 1  --model-label test_model --eval-env SocialAI-TestLanguageFeedbackSwitchesInformationSeekingParamEnv-v1  --model-to-evaluate storage/test/ --n-seeds 8
-````
-
-To visualize a policy, run:
-```
-python -m scripts.visualize --model storage/test_model_name/1/ --pause 0.1 --seed $RANDOM --episodes 20 --gif viz/test
-```
 
 
 # LLM experiments

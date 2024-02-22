@@ -149,11 +149,11 @@ for episode in range(args.episodes):
 
 if save:
     # from IPython import embed; embed()
-    print(f"Saving to {savename} ", end="")
-    mimsave(savename + '.gif', frames, duration=args.pause)
+    gifpath = save+".gif"
+    print(f"Saving to {gifpath} ", end="")
+    mimsave(gifpath, frames, duration=args.pause)
     # Reduce gif size
     # bashCommand = "gifsicle -O3 --colors 32 -o {}.gif {}.gif".format(savename, savename)
     # process = subprocess.run(bashCommand.split(), stdout=subprocess.PIPE)
-
 
     print("Done.")

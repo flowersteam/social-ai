@@ -22,8 +22,7 @@ from models import *
 parser = argparse.ArgumentParser()
 
 ## General parameters
-parser.add_argument("--algo", required=True,
-                    help="algorithm to use: ppo (REQUIRED)")
+parser.add_argument("--algo", default="ppo")
 parser.add_argument("--env", required=True,
                     help="name of the environment to train on (REQUIRED)")
 parser.add_argument("--model", default=None,
