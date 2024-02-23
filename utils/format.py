@@ -21,7 +21,7 @@ def get_obss_preprocessor(obs_space, text=None, dialogue_current=None, dialogue_
             })
 
     # Check if it is a MiniGrid observation space
-    elif isinstance(obs_space, gym.spaces.Dict) and list(obs_space.spaces.keys()) == ["image"]:
+    elif isinstance(obs_space, gym.spaces.Dict) and "image" in obs_space.spaces:
 
         assert (custom_image_preprocessor is None) == (custom_image_space_preprocessor is None)
 

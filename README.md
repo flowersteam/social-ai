@@ -44,9 +44,15 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvi
 ```
 
 ## Jupyter Notebook
-You can start the jupyter notebook with examples of usage with:
+
+Install the jupyter:
+```commandline
+pip install jupyter
 ```
-jupyter notebook 
+
+Start the jupyter notebook with examples of usage with:
+```
+jupyter notebook SocialAI_playground.ipynb 
 ```
 
 You can also play with our [google colab notebook](https://colab.research.google.com/drive/1LrbcRzIJwptZ9OdFko4pIFw72joTyW5q?usp=sharing)
@@ -99,13 +105,9 @@ python -m scripts.evaluate_new --episodes 500  --test-set-seed 1  --model-label 
 
 ## Recreating all the experiments 
 
-See ```run_SAI_final_case_studies.txt``` for the experiments in the paper.
-
 ### Regular machine
 
 To run the experiments on a regular machine `run_SAI_final_case_studies.txt` contains all the bash commands to run the RL experiments.
-
-
 
 ### Slurm based cluster (todo:)
 

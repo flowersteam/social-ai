@@ -2188,8 +2188,7 @@ class Grid:
         #         if j > 0:
         #             mask[i-1, j-1] = True
         #             mask[i, j-1] = True
-
-        mask = np.ones(shape=(grid.width, grid.height), dtype=np.bool)
+        mask = np.ones(shape=(grid.width, grid.height), dtype=bool)
         # handle frontal occlusions
 
         # 45 deg
@@ -2323,7 +2322,6 @@ class MiniGridEnv(gym.Env):
         reward_diminish_factor=0.9,
         egocentric_observation=True,
     ):
-
         # sanity check params for SocialAI experiments
         if "SocialAI" in type(self).__name__:
             assert egocentric_observation
@@ -2544,7 +2542,11 @@ class MiniGridEnv(gym.Env):
         """
         Generate random integer in [low,high[
         """
-        return self.np_random.randint(low, high)
+        try:
+            # for newer versions
+            return self.np_random.integers(low, high)
+        except:
+            return self.np_random.randint(low, high)
 
     def _rand_float(self, low, high):
         """
@@ -3157,7 +3159,7 @@ class MiniGridEnv(gym.Env):
         top_left = self.agent_pos + f_vec * (self.agent_view_size-1) - r_vec * (self.agent_view_size // 2)
 
         # Mask of which cells to highlight
-        highlight_mask = np.zeros(shape=(self.width, self.height), dtype=np.bool)
+        highlight_mask = np.zeros(shape=(self.width, self.height), dtype=bool)
 
         # For each cell in the visibility mask
         for vis_j in range(0, self.agent_view_size):

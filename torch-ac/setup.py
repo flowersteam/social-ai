@@ -6,9 +6,7 @@ setup(
     keywords="reinforcement learning, actor-critic, a2c, ppo, multi-processes, gpu",
     packages=find_packages(),
     install_requires=[
-        "numpy==1.17.0",
-        #"torch>=1.10.2"
-        "torch==1.10.2"
-        #"torch==1.10.2+cu102"
+        'numpy>=1.21.6'  # tested on 1.21.6, but it should work with newer versions as well
+        "torch"  # tested on 1.13.1+cu117
     ]
 )
